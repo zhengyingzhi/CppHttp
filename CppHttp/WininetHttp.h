@@ -53,6 +53,7 @@ public:
     /* ×Ö·û¼¯×ª»»
      */
     static std::string UtfToGbk(const std::string& utf8);
+    static std::string GbkToUtf(const std::string& gbk);
 
 protected:
     void ReleaseAll();
