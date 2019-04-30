@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "CppHttp", "CppHttp\CppHttp.vcxproj", "{710790EB-C6C3-4DED-9CFF-508F85903495}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "WininetHttp", "CppHttp\CppHttp.vcxproj", "{710790EB-C6C3-4DED-9CFF-508F85903495}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "CPing", "CPing\CPing.vcxproj", "{C0319425-8D3B-4047-AF22-CB9E1A4494EE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,14 @@ Global
 		{710790EB-C6C3-4DED-9CFF-508F85903495}.Release|x64.Build.0 = Release|x64
 		{710790EB-C6C3-4DED-9CFF-508F85903495}.Release|x86.ActiveCfg = Release|Win32
 		{710790EB-C6C3-4DED-9CFF-508F85903495}.Release|x86.Build.0 = Release|Win32
+		{C0319425-8D3B-4047-AF22-CB9E1A4494EE}.Debug|x64.ActiveCfg = Debug|x64
+		{C0319425-8D3B-4047-AF22-CB9E1A4494EE}.Debug|x64.Build.0 = Debug|x64
+		{C0319425-8D3B-4047-AF22-CB9E1A4494EE}.Debug|x86.ActiveCfg = Debug|Win32
+		{C0319425-8D3B-4047-AF22-CB9E1A4494EE}.Debug|x86.Build.0 = Debug|Win32
+		{C0319425-8D3B-4047-AF22-CB9E1A4494EE}.Release|x64.ActiveCfg = Release|x64
+		{C0319425-8D3B-4047-AF22-CB9E1A4494EE}.Release|x64.Build.0 = Release|x64
+		{C0319425-8D3B-4047-AF22-CB9E1A4494EE}.Release|x86.ActiveCfg = Release|Win32
+		{C0319425-8D3B-4047-AF22-CB9E1A4494EE}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
