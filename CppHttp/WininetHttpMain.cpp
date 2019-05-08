@@ -12,23 +12,25 @@ void ParseJsonInfo(const std::string& aJsonInfo);
 int main(int argc, char* argv[])
 {
     std::string lUrl, lInterface, lResult, lPostData;
-    lUrl = "192.168.1.142:9000";      // 
+    lUrl = "https://bigquant.com";      // 192.168.1.142:9000
     lInterface = "/api/live_trading/info";
 
     json lJsonData;
     lJsonData["sender_comp_id"] = "xczq";
     lJsonData["sender_version"] = "1.0.0";
-    lJsonData["user_name"] = "yzhzheng";
-    lJsonData["token"] = "eJ";
-    lJsonData["live_id"] = "0000-0000";
+    lJsonData["user_name"] = "xczq002";
+    lJsonData["token"] = "";
+    lJsonData["live_id"] = "886ed1066fa411e9b5650a580a80040c";
     std::string lReqData = lJsonData.dump();
     std::cout << "post_data:" << lReqData << std::endl;
 
+    std::string lHeader;
     WininetHttp winhttp;
-    HttpInterfaceError lErrorID = winhttp.RequestInfo(lResult, lUrl, lInterface, HR_Post, "", lReqData);
-    std::cout << lResult << std::endl;
+    HttpInterfaceError lErrorID = winhttp.RequestInfo(lResult, lUrl, lInterface, HR_Post, lHeader, lReqData);
+    std::cout << "result:" << lResult << std::endl;
 
-    if (lResult.length()) {
+    if (lResult.length())
+    {
         ParseJsonInfo(lResult);
     }
 
@@ -61,6 +63,10 @@ void ParseJsonInfo(const std::string& aJsonInfo)
     reader = json::parse(aJsonInfo.c_str());
     int status_code = reader["status_code"];
     std::cout << "status_code:" << status_code << endl;
+    if (status_code != 200)
+    {
+        return;
+    }
     json data = reader["data"];
 
     string ct = data["create_time"];

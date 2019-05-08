@@ -73,6 +73,8 @@ HttpInterfaceError WininetHttp::RequestInfo(
         throw HIE_InitErr;
     }
 
+    // HttpAddRequestHeadersA(m_hRequest, aHeader.c_str(), aHeader.length(), HTTP_ADDREQ_FLAG_COALESCE);
+
     DWORD lHeaderLength = aHeader.length();
     BOOL lRet = FALSE;
     if (HR_Get == aReqType)
@@ -81,8 +83,7 @@ HttpInterfaceError WininetHttp::RequestInfo(
     }
     else
     {
-        DWORD lDataLength = aRetData.length();
-        lRet = HttpSendRequestA(m_hRequest, aHeader.c_str(), lHeaderLength, (LPVOID)aRetData.c_str(), lDataLength);
+        lRet = HttpSendRequestA(m_hRequest, aHeader.c_str(), lHeaderLength, (LPVOID)aReqData.c_str(), (DWORD)aReqData.length());
     }
     if (!lRet)
     {
@@ -194,12 +195,12 @@ std::string WininetHttp::UtfToGbk(const std::string& utf8)
 
 std::string WininetHttp::GbkToUtf(const std::string& gbk)
 {
-    int nwLen = ::MultiByteToWideChar(CP_ACP, 0, str.c_str(), -1, NULL, 0);
+    int nwLen = ::MultiByteToWideChar(CP_ACP, 0, gbk.c_str(), -1, NULL, 0);
 
     wchar_t * pwBuf = new wchar_t[nwLen + 1];
     ZeroMemory(pwBuf, nwLen * 2 + 2);
 
-    ::MultiByteToWideChar(CP_ACP, 0, str.c_str(), (int)str.length(), pwBuf, nwLen);
+    ::MultiByteToWideChar(CP_ACP, 0, gbk.c_str(), (int)gbk.length(), pwBuf, nwLen);
 
     int nLen = ::WideCharToMultiByte(CP_UTF8, 0, pwBuf, -1, NULL, NULL, NULL, NULL);
 
