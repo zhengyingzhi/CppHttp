@@ -63,7 +63,7 @@ HttpInterfaceError WininetHttp::RequestInfo(
     }
 
     std::string lRequestType = (HR_Get == aReqType) ? "GET" : "POST";
-    DWORD flags = INTERNET_FLAG_RELOAD;
+    DWORD flags = INTERNET_FLAG_FORMS_SUBMIT;// INTERNET_FLAG_RELOAD;
     if (lIsHttps)
         flags |= INTERNET_FLAG_SECURE;
 
