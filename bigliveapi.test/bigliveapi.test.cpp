@@ -19,7 +19,7 @@ int main(int argc, char* argv[])
 
     int rv;
     const char* lpURL = "https://bigquant.com";
-    const char* lpHeader = "Content-Type: application/x-www-form-urlencoded";
+    const char* lpHeader = NULL;
     char        lReqData[1000] = "";
     uint32_t    lReqLength = 0;
 
@@ -29,8 +29,22 @@ int main(int argc, char* argv[])
     const char* lToken = "";
     const char* lLiveId = "886ed1066fa411e9b5650a580a80040c";
 
+#if 0
+    lpHeader = "Content-Type: application/x-www-form-urlencoded";
     lReqLength = snprintf(lReqData, sizeof(lReqData) - 1, "sender_comp_id=%s&sender_version=%s&user_name=%s&live_id=%s&token=%s",
         lSenderCompId, lSenderVersion, lUserName, lLiveId, lToken);
+#else
+    lpHeader = "Content-Type: application/json";
+    json lJsonData;
+    lJsonData["sender_comp_id"] = lSenderCompId;
+    lJsonData["sender_version"] = lSenderVersion;
+    lJsonData["user_name"] = lUserName;
+    lJsonData["token"] = lToken;
+    lJsonData["live_id"] = lLiveId;
+    std::string lDumpData = lJsonData.dump();
+    strncpy(lReqData, lDumpData.c_str(), sizeof(lReqData) - 1);
+    lReqLength = (int)lDumpData.length();
+#endif
 
     const char* lpInterface;
     big_live_data_t lData;

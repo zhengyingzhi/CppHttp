@@ -21,14 +21,24 @@ int main(int argc, char* argv[])
     std::string lToken           = "";
     std::string lLiveId          = "886ed1066fa411e9b5650a580a80040c";
 
+    std::string lHeader, lReqData;
+#if 0
+    lHeader = "Content-Type: application/x-www-form-urlencoded";
     char lReqBuffer[4096] = "";
     snprintf(lReqBuffer, sizeof(lReqBuffer) - 1, "sender_comp_id=%s&sender_version=%s&user_name=%s&live_id=%s&token=%s",
         lSenderCompId.c_str(), lSenderVersion.c_str(), lUserName.c_str(), lLiveId.c_str(), lToken.c_str());
-    std::string lReqData(lReqBuffer);
+    lReqData = std::string(lReqBuffer);
+#else
+    lHeader = "Content-Type: application/json";
+    json lJsonData;
+    lJsonData["sender_comp_id"] = lSenderCompId.c_str();
+    lJsonData["sender_version"] = lSenderVersion.c_str();
+    lJsonData["user_name"] = lUserName.c_str();
+    lJsonData["token"] = lToken.c_str();
+    lJsonData["live_id"] = lLiveId.c_str();
+    lReqData = lJsonData.dump();
+#endif
     std::cout << "post_data:" << lReqData << std::endl;
-
-    std::string lHeader;
-    lHeader = "Content-Type: application/x-www-form-urlencoded";
 
     WininetHttp winhttp;
     HttpInterfaceError lErrorID;

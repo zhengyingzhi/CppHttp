@@ -139,7 +139,7 @@ LIVE_API int LIVE_STDCALL big_live_request_post(
     while (1)
     {
         memset(lBuffer, 0, sizeof(lBuffer));
-        lRet = InternetReadFile(hRequest, lBuffer, READ_BUFFER_SIZE, &lBufferSize);
+        lRet = InternetReadFile(hRequest, lBuffer, READ_BUFFER_SIZE - 1, &lBufferSize);
         if (!lRet || (0 == lBufferSize))
         {
             break;

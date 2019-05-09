@@ -63,7 +63,7 @@ HttpInterfaceError WininetHttp::RequestInfo(
     }
 
     std::string lRequestType = (HR_Get == aReqType) ? "GET" : "POST";
-    DWORD flags = INTERNET_FLAG_FORMS_SUBMIT;// INTERNET_FLAG_RELOAD;
+    DWORD flags = 0;// INTERNET_FLAG_FORMS_SUBMIT;// INTERNET_FLAG_RELOAD;
     if (lIsHttps)
         flags |= INTERNET_FLAG_SECURE;
 
@@ -104,7 +104,7 @@ HttpInterfaceError WininetHttp::RequestInfo(
     while (true)
     {
         memset(lBuffer, 0, sizeof(lBuffer));
-        lRet = InternetReadFile(m_hRequest, lBuffer, READ_BUFFER_SIZE, &lBufferSize);
+        lRet = InternetReadFile(m_hRequest, lBuffer, READ_BUFFER_SIZE - 1, &lBufferSize);
         if (!lRet || (0 == lBufferSize))
         {
             break;
