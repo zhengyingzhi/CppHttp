@@ -18,7 +18,7 @@ int main(int argc, char* argv[])
     std::string lSenderCompId   = "xczq";
     std::string lSenderVersion  = "1.0.0";
     std::string lUserName        = "xczq002";
-    std::string lToken           = "";
+    std::string lToken           = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjozMTA5MiwidXNlcm5hbWUiOiJ4Y3pxMDAyIiwidXBkYXRlX3RpbWUiOiIyMDE5LTA0LTMwIDE2OjQ0OjExIiwiZXhwIjo3MjU4MDg5NjAwfQ.WxEmPfWzcP6KATtwMq3e2dDfLffZJfI32YOxcJTWPz0";
     std::string lLiveId          = "886ed1066fa411e9b5650a580a80040c";
 
     std::string lHeader, lReqData;
